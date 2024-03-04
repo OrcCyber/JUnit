@@ -75,7 +75,7 @@ public class MathTest {
      */
     @Test
     public void testSum() {
-        assertEquals(expectedNumber, math.sum(number1, number2));
+        assertEquals("Dữ liệu đầu vào: Number1 = " + number1 + ", Number2 = " + number2,expectedNumber, math.sum(number1,number2));
     }
 
 }

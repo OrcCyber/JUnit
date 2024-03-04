@@ -22,21 +22,25 @@ public class MyRunListener extends RunListener{
     @Override
     public void testRunStarted(Description description) throws Exception {
         try {
-            String  filePath = "C:\\Users\\TUAN\\OneDrive - VLG\\Desktop\\results.txt";
+            String  filePath = "C:\\learning\\testing\\mid-term report\\testResult.txt";
             writer = new PrintWriter(new FileWriter(filePath));
             writer.println("Bắt đầu chạy kiểm thử \n");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    @Override
+   @Override
     public void testFailure(Failure failure) throws Exception {
-        //writer.println("Kiểm thử thất bại: " + failure.getDescription().getDisplayName());
-        writer.println("Kiểm thử thất bại: " + failure.getDescription());
-        writer.println("Ngoại lệ: " + failure.getException());
-        writer.println("--------------------------------------------------------------------");
-    }
+    String failureMessage = failure.getException().getMessage();
+    String inputValues = failureMessage.split("Dữ liệu đầu vào: ")[1].split("expected:<")[0].trim();
+    
+    String expectedValue = failureMessage.split("expected:<")[1].split(">")[0];
+    String actualValue = failureMessage.split("but was:<")[1].split(">")[0];
 
+    writer.println("Kiểm thử thất bại: " + failure.getDescription());
+    writer.println("Dữ liệu đầu vào: " + inputValues + ", Kết quả mong đợi là <" + expectedValue + "> nhưng lại ra <" + actualValue + ">");
+    writer.println("--------------------------------------------------------------------");
+}
     @Override
     public void testRunFinished(Result result) throws Exception {
         writer.println("\nKiểm thử kết thúc: " + result.getRunCount() + " kiểm thử đã chạy. " +

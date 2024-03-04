@@ -77,7 +77,7 @@ public class PersonTest {
      */
     @Test
     public void testGetName() {
-        assertEquals(expectedName, person.getName());
+        assertEquals("Dữ liệu đầu vào: " + person.getName(),expectedName, person.getName());
     }
 
     /**
@@ -85,7 +85,7 @@ public class PersonTest {
      */
     @Test
     public void testGetAge() {
-        assertEquals(expectedAge, person.getAge());
+        assertEquals("Dữ liệu đầu vào: " + person.getAge(),expectedAge, person.getAge());
     }
 
     /**
